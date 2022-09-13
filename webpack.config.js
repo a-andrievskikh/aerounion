@@ -2,7 +2,6 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	context: path.resolve(__dirname, 'src'),
 	mode: 'development',
 	entry: {
 		main: path.resolve(__dirname, 'src', 'main.js'),
@@ -10,6 +9,7 @@ module.exports = {
 	output: {
 		filename: '[name].[contenthash].bundle.js',
 		path: path.resolve(__dirname, 'dist'),
+		assetModuleFilename: 'assets/[name][ext][query]',
 		clean: true,
 	},
 	plugins: [
