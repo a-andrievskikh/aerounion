@@ -14,7 +14,7 @@ module.exports = {
 	},
 
 	plugins: [
-		CopyWebpackPlugin({
+		new CopyWebpackPlugin({
 			patterns: [
 				{
 					from: paths.public,
