@@ -34,7 +34,7 @@ module.exports = {
 				},
 			},
 			{ test: /\.(jpe?g|webp|?:ico|gif|png|)$/i, type: 'asset/resource' },
-			{ test: /\.(woff(2)?|eot|ttf|otf|svg|)$/i, type: 'asset/inline' },
+			{ test: /\.(woff2?|eot|ttf|otf|svg|)$/i, type: 'asset/inline' },
 		],
 	},
 };
