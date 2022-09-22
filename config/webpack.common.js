@@ -23,7 +23,16 @@ module.exports = {
 
 	module: {
 		rules: [
-			{ test: /\.js$/i, use: ['babel-loader'] },
+			{
+				test: /\.m?js$/i,
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env'],
+					},
+				},
+			},
 			{ test: /\.(jpe?g|webp|?:ico|gif|png|)$/i, type: 'asset/resource' },
 			{ test: /\.(woff(2)?|eot|ttf|otf|svg|)$/i, type: 'asset/inline' },
 		],
