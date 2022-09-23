@@ -36,5 +36,8 @@
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:a-andrievskikh/aerounion"
+	},
+	"dependencies": {
+		"@babel/polyfill": "^7.12.1"
 	}
 }
