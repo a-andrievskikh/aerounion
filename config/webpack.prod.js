@@ -10,10 +10,10 @@ module.exports = merge(common, {
 	mode: 'production',
 	devtool: false,
 	output: {
+		clean: true,
 		path: paths.build,
 		filename: 'js/[name].[contenthash].bundle.js',
 		assetModuleFilename: 'assets/[name][ext]',
-		clean: true,
 	},
 
 	module: {
