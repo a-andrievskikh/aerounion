@@ -15,7 +15,7 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Aerounion',
-			favicon: paths.src + '/images/favicon.png',
+			favicon: paths.src + '/assets/icons/favicon.png',
 			template: paths.src + '/template.html',
 			filename: 'index.html',
 		}),
