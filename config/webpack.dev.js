@@ -30,7 +30,7 @@ module.exports = merge(common, {
 						options: {
 							sourceMap: true,
 							postcssOptions: {
-								plugins: [require('postcss-present-env')],
+								plugins: ['postcss-present-env'],
 							},
 						},
 					},
