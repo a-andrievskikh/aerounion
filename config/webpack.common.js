@@ -6,10 +6,10 @@ module.exports = {
 	entry: ['@babel/polyfill', paths.src + '/index.js'],
 
 	output: {
-		clean: true,
 		path: paths.dev,
+		clean: true,
 		filename: '[name].bundle.js',
-		assetModuleFilename: '[path]/assets/[name][ext]',
+		assetModuleFilename: 'assets/[name].[ext]',
 	},
 
 	plugins: [
@@ -33,7 +33,7 @@ module.exports = {
 					},
 				},
 			},
-			{ test: /\.(?:ico|jpe?g|webp|gif|png|)$/i, type: 'asset/resource' },
+			{ test: /\.(?:ico|jpe?g|webp|gif|png)$/i, type: 'asset/resource' },
 			{ test: /\.(woff2?|eot|ttf|otf|svg|)$/i, type: 'asset/inline' },
 		],
 	},
