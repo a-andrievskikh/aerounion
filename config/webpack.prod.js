@@ -1,5 +1,6 @@
 const path = require('path');
 const prod = path.resolve(__dirname, '../dist');
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
