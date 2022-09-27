@@ -1,10 +1,18 @@
 const { merge } = require('webpack-merge');
 
+const paths = require('./paths');
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
 	mode: 'development',
 	devtool: 'inline-source-map',
+
+	output: {
+		path: paths.dev,
+		clean: true,
+		filename: '[name].bundle.js',
+		assetModuleFilename: 'assets/[name].[ext]',
+	},
 
 	devServer: {
 		historyApiFallback: true,
