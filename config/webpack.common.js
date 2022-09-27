@@ -5,13 +5,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
-	entry: ['@babel/polyfill', src + '/index.js'],
+	entry: ['@babel/polyfill', `${src}/index.js`],
 
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Aerounion',
-			favicon: src + '/assets/icons/favicon.png',
-			template: src + '/template.html',
+			favicon: `${src}/assets/icons/favicon.png`,
+			template: `${src}/template.html`,
 			filename: 'index.html',
 		}),
 	],
