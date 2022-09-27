@@ -1,6 +1,7 @@
-const { merge } = require('webpack-merge');
+const path = require('path');
+const dev = path.resolve(__dirname, '../build');
 
-const paths = require('./paths');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
@@ -8,7 +9,7 @@ module.exports = merge(common, {
 	devtool: 'inline-source-map',
 
 	output: {
-		path: paths.dev,
+		path: dev,
 		clean: true,
 		filename: '[name].bundle.js',
 		assetModuleFilename: 'assets/[name].[ext]',
