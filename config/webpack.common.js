@@ -5,13 +5,6 @@ const paths = require('./paths');
 module.exports = {
 	entry: ['@babel/polyfill', paths.src + '/index.js'],
 
-	output: {
-		path: paths.dev,
-		clean: true,
-		filename: '[name].bundle.js',
-		assetModuleFilename: 'assets/[name].[ext]',
-	},
-
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Aerounion',
