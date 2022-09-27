@@ -1,15 +1,17 @@
+const path = require('path');
+const src = path.resolve(__dirname, '../src');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const paths = require('./paths');
 
 module.exports = {
-	entry: ['@babel/polyfill', paths.src + '/index.js'],
+	entry: ['@babel/polyfill', src + '/index.js'],
 
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Aerounion',
-			favicon: paths.src + '/assets/icons/favicon.png',
-			template: paths.src + '/template.html',
+			favicon: src + '/assets/icons/favicon.png',
+			template: src + '/template.html',
 			filename: 'index.html',
 		}),
 	],
