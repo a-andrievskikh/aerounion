@@ -3,7 +3,6 @@ const src = path.resolve(__dirname, '../src');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
 	entry: ['@babel/polyfill', `${src}/index.js`],
 
@@ -19,6 +18,14 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: /\.(?:ico|jpe?g|webp|gif|png)$/i,
+				type: 'asset/resource',
+			},
+			{
+				test: /\.(woff2?|eot|ttf|otf|svg)$/i,
+				type: 'asset/inline',
+			},
+			{
 				test: /\.m?js$/i,
 				exclude: /(node_modules|bower_components)/,
 				use: {
@@ -28,8 +35,6 @@ module.exports = {
 					},
 				},
 			},
-			{ test: /\.(?:ico|jpe?g|webp|gif|png)$/i, type: 'asset/resource' },
-			{ test: /\.(woff2?|eot|ttf|otf|svg|)$/i, type: 'asset/inline' },
 		],
 	},
 };

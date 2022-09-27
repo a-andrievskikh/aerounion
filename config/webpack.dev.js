@@ -12,7 +12,7 @@ module.exports = merge(common, {
 		path: dev,
 		clean: true,
 		filename: '[name].bundle.js',
-		assetModuleFilename: 'assets/[name].[ext]',
+		assetModuleFilename: 'assets/[name][ext][query]',
 	},
 
 	devServer: {
@@ -25,7 +25,10 @@ module.exports = merge(common, {
 
 	module: {
 		rules: [
-			{ test: /\.html$/i, loader: 'html-loader' },
+			{
+				test: /\.html$/i,
+				loader: 'html-loader',
+			},
 			{
 				test: /\.(c|sa|sc)ss$/i,
 				use: [
