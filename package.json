@@ -8,7 +8,7 @@
 	"scripts": {
 		"start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
 		"dev": "cross-env NODE_ENV=development webpack --config config/webpack.dev.js",
-		"build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
+		"prod": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
 		"clear": "rd /s /q build dist"
 	},
 	"homepage": "https://github.com/a-andrievskikh/aerounion#readme",
