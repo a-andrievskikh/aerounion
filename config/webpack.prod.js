@@ -8,6 +8,7 @@ module.exports = merge(common, {
 	output: {
 		clean: true,
 		filename: 'js/[name].[contenthash].bundle.js',
+		assetModuleFilename: '[path][hash][query]',
 	},
 
 	module: {
@@ -33,7 +34,7 @@ module.exports = merge(common, {
 
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: '[name].[contenthash].css',
+			filename: 'styles/style.[contenthash].css',
 			chunkFilename: '[id].css',
 		}),
 	],
