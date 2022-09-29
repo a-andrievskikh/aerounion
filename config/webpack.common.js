@@ -13,11 +13,14 @@ module.exports = {
 	devtool,
 	context: path.resolve(__dirname, '../src'),
 	entry: ['@babel/polyfill', '/index.js'],
-	output: { path: path.resolve(__dirname, '../dist') },
+	output: {
+		path: path.resolve(__dirname, '../dist'),
+		assetModuleFilename: '[path][name][ext][query]',
+	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Aerounion',
-			favicon: 'assets/icons/favicon.png',
+			// favicon: 'assets/icons/favicon.png',
 			template: 'template.html',
 			filename: 'index.html',
 		}),
@@ -28,9 +31,12 @@ module.exports = {
 			{
 				test: /\.(?:ico|jpe?g|webp|gif|png)$/i,
 				type: 'asset/resource',
+				// generator: {
+				// 	filename: '[path][name]-[hash][ext]',
+				// },
 			},
 			{
-				test: /\.(woff2?|eot|ttf|otf|svg)$/i,
+				test: /\.(woff2?|svg)$/i,
 				type: 'asset/inline',
 			},
 			{

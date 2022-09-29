@@ -8,7 +8,6 @@ module.exports = merge(common, {
 	output: {
 		clean: true,
 		filename: 'js/[name].[contenthash].bundle.js',
-		assetModuleFilename: 'assets/[name][ext]',
 	},
 
 	module: {

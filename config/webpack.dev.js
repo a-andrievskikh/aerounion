@@ -5,7 +5,6 @@ module.exports = merge(common, {
 	output: {
 		clean: true,
 		filename: '[name].bundle.js',
-		assetModuleFilename: 'assets/[name][ext][query]',
 	},
 
 	devServer: {
@@ -41,7 +40,7 @@ module.exports = merge(common, {
 						options: {
 							sourceMap: true,
 							postcssOptions: {
-								plugins: ['postcss-present-env'],
+								plugins: [require('postcss-preset-env')],
 							},
 						},
 					},
