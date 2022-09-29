@@ -1,19 +1,24 @@
 const path = require('path');
-const src = path.resolve(__dirname, '../src');
-const build = path.resolve(__dirname, '../dist');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const mode = process.env.NODE_ENV || 'development';
+const devMode = mode === 'development';
+const target = devMode ? 'web' : 'browserslist';
+const devtool = devMode ? 'inline-source-map' : false;
+
 module.exports = {
-	entry: ['@babel/polyfill', `${src}/index.js`],
-	output: {
-		path: build,
-	},
+	mode,
+	target,
+	devtool,
+	context: path.resolve(__dirname, '../src'),
+	entry: ['@babel/polyfill', '/index.js'],
+	output: { path: path.resolve(__dirname, '../dist') },
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Aerounion',
-			favicon: `${src}/assets/icons/favicon.png`,
-			template: `${src}/template.html`,
+			favicon: 'assets/icons/favicon.png',
+			template: 'template.html',
 			filename: 'index.html',
 		}),
 	],
