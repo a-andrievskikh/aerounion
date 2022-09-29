@@ -5,6 +5,7 @@ module.exports = merge(common, {
 	output: {
 		clean: true,
 		filename: '[name].bundle.js',
+		assetModuleFilename: '[path][name][ext][query]',
 	},
 
 	devServer: {

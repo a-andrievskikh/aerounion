@@ -15,7 +15,6 @@ module.exports = {
 	entry: ['@babel/polyfill', '/index.js'],
 	output: {
 		path: path.resolve(__dirname, '../dist'),
-		assetModuleFilename: '[path][name][ext][query]',
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
