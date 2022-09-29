@@ -1,11 +1,14 @@
 const path = require('path');
 const src = path.resolve(__dirname, '../src');
+const build = path.resolve(__dirname, '../dist');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: ['@babel/polyfill', `${src}/index.js`],
-
+	output: {
+		path: build,
+	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Aerounion',

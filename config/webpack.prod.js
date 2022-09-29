@@ -1,6 +1,3 @@
-const path = require('path');
-const prod = path.resolve(__dirname, '../dist');
-
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
@@ -12,7 +9,6 @@ module.exports = merge(common, {
 	devtool: false,
 	output: {
 		clean: true,
-		path: prod,
 		filename: 'js/[name].[contenthash].bundle.js',
 		assetModuleFilename: 'assets/[name][ext]',
 	},
