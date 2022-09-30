@@ -15,6 +15,9 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 	},
+	cache: {
+		type: 'filesystem', 
+	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Aerounion',
