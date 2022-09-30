@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const mode = process.env.NODE_ENV;
 const target = mode === 'development' ? 'web' : 'browserslist';
-const devtool = target === 'development' ? 'inline-source-map' : false;
+const devtool = target === 'web' ? 'inline-source-map' : false;
 
 module.exports = {
 	mode,
@@ -18,7 +18,7 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Aerounion',
-			// favicon: 'assets/icons/favicon.png',
+			favicon: 'assets/icons/favicon.png',
 			template: 'template.html',
 			filename: 'index.html',
 		}),
