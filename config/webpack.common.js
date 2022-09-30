@@ -2,10 +2,9 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const mode = process.env.NODE_ENV || 'development';
-const devMode = mode === 'development';
-const target = devMode ? 'web' : 'browserslist';
-const devtool = devMode ? 'inline-source-map' : false;
+const mode = process.env.NODE_ENV;
+const target = mode === 'development' ? 'web' : 'browserslist';
+const devtool = target === 'development' ? 'inline-source-map' : false;
 
 module.exports = {
 	mode,
