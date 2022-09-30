@@ -13,7 +13,7 @@ module.exports = {
 	context: path.resolve(__dirname, '../src'),
 	entry: ['@babel/polyfill', '/index.js'],
 	output: {
-		path: path.resolve(__dirname, '../dist'),
+		path: path.resolve(__dirname, 'dist'),
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
