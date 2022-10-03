@@ -1,5 +1,3 @@
-import favicon from '../src/assets/icons/favicon.png';
-
 // подключение стилей
 import './styles/style.css';
 
