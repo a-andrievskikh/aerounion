@@ -19,7 +19,6 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Aerounion',
-			favicon: 'assets/icons/favicon.png',
 			template: 'template.html',
 			filename: 'index.html',
 		}),
@@ -30,9 +29,6 @@ module.exports = {
 			{
 				test: /\.(?:ico|jpe?g|webp|gif|png)$/i,
 				type: 'asset/resource',
-				// generator: {
-				// 	filename: '[path][name]-[hash][ext]',
-				// },
 			},
 			{
 				test: /\.(woff2?|svg)$/i,
