@@ -2,12 +2,10 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const mode = process.env.NODE_ENV;
-const target = mode === 'development' ? 'web' : 'browserslist';
+const target = process.env.NODE_ENV === 'development' ? 'web' : 'browserslist';
 const devtool = target === 'web' ? 'inline-source-map' : false;
 
 module.exports = {
-	mode,
 	target,
 	devtool,
 	context: path.resolve(__dirname, '../src'),
