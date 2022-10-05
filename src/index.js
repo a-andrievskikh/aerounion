@@ -1,5 +1,5 @@
 // подключение стилей
-import './styles/style.css';
+import '@/styles/style.css';
 
 const mult = (a, b) => a * b;
 
