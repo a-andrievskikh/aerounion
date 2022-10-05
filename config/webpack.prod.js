@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 
@@ -34,8 +35,16 @@ module.exports = merge(common, {
 
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: 'styles/style.[contenthash].css',
+			filename: 'styles/[name].[contenthash].css',
 			chunkFilename: '[id].css',
+		}),
+		new CopyWebpackPlugin({
+			patterns: [
+				{
+					from: path.resolve(__dirname, '../src/assets'),
+					to: path.resolve(__dirname, '../dist/assets'),
+				},
+			],
 		}),
 	],
 
