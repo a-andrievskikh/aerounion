@@ -1,8 +1,9 @@
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(common, {
 	output: {
@@ -44,7 +45,7 @@ module.exports = merge(common, {
 
 	optimization: {
 		minimize: true,
-		minimizer: [new CssMinimizerPlugin(), '...'],
+		minimizer: [new CssMinimizerPlugin(), new TerserWebpackPlugin(), '...'],
 		runtimeChunk: {
 			name: 'runtime',
 		},
