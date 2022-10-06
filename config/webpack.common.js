@@ -1,28 +1,47 @@
+const webpack = require('webpack');
 const path = require('path');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const target = process.env.NODE_ENV === 'development' ? 'web' : 'browserslist';
-const devtool = target === 'web' ? 'inline-source-map' : false;
+const devMode = process.env.NODE_ENV === 'development';
+const target = devMode ? 'web' : 'browserslist';
+const devtool = devMode ? 'inline-source-map' : false;
+
+const plugins = [
+	new MiniCssExtractPlugin({
+		filename: devMode ? '[name].css' : '[name].[contenthash].css',
+		chunkFilename: devMode ? '[id].css' : '[id].[contenthash].css',
+	}),
+	new HtmlWebpackPlugin({
+		title: 'Aerounion',
+		template: 'template.html',
+		filename: 'index.html',
+	}),
+];
+if (devMode) {
+	plugins.push(new webpack.HotModuleReplacementPlugin());
+}
 
 module.exports = {
 	target,
 	devtool,
+	plugins,
 	context: path.resolve(__dirname, '../src'),
 	entry: ['@babel/polyfill', '/index.js'],
 	output: {
 		path: path.resolve(__dirname, '../dist'),
 	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			title: 'Aerounion',
-			template: 'template.html',
-			filename: 'index.html',
-		}),
-	],
-
 	module: {
 		rules: [
+			{
+				test: /\.(c|sa|sc)ss$/i,
+				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+						options: {},
+					},
+				],
+			},
 			{
 				test: /\.(?:ico|jpe?g|webp|gif|png)$/i,
 				type: 'asset/resource',

@@ -1,4 +1,3 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 
@@ -16,11 +15,6 @@ module.exports = merge(common, {
 		hot: true,
 		port: 8080,
 	},
-	plugins: [
-		new MiniCssExtractPlugin({
-			filename: 'styles/[name].css',
-		}),
-	],
 
 	module: {
 		rules: [
@@ -31,9 +25,6 @@ module.exports = merge(common, {
 			{
 				test: /\.(c|sa|sc)ss$/i,
 				use: [
-					{
-						loader: 'style-loader',
-					},
 					{
 						loader: 'css-loader',
 						options: {

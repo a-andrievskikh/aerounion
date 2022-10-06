@@ -1,4 +1,3 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
@@ -12,12 +11,22 @@ module.exports = merge(common, {
 		assetModuleFilename: '[path][hash][query]',
 	},
 
+	plugins: [
+		new CopyWebpackPlugin({
+			patterns: [
+				{
+					from: path.resolve(__dirname, '../src/assets'),
+					to: path.resolve(__dirname, '../dist/assets'),
+				},
+			],
+		}),
+	],
+
 	module: {
 		rules: [
 			{
 				test: /\.(c|sa|sc)ss$/i,
 				use: [
-					MiniCssExtractPlugin.loader,
 					{
 						loader: 'css-loader',
 						options: {
@@ -32,21 +41,6 @@ module.exports = merge(common, {
 			},
 		],
 	},
-
-	plugins: [
-		new MiniCssExtractPlugin({
-			filename: 'styles/[name].[contenthash].css',
-			chunkFilename: '[id].css',
-		}),
-		new CopyWebpackPlugin({
-			patterns: [
-				{
-					from: path.resolve(__dirname, '../src/assets'),
-					to: path.resolve(__dirname, '../dist/assets'),
-				},
-			],
-		}),
-	],
 
 	optimization: {
 		minimize: true,
