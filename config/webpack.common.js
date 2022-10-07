@@ -7,30 +7,25 @@ const devMode = process.env.NODE_ENV === 'development';
 const target = devMode ? 'web' : 'browserslist';
 const devtool = devMode ? 'inline-source-map' : false;
 
-const plugins = [
-	new MiniCssExtractPlugin({
-		filename: devMode ? '[name].css' : '[name].[contenthash].css',
-		chunkFilename: devMode ? '[id].css' : '[id].[contenthash].css',
-	}),
-	new HtmlWebpackPlugin({
-		title: 'Aerounion',
-		template: 'template.html',
-		filename: 'index.html',
-	}),
-];
-if (devMode) {
-	plugins.push(new webpack.HotModuleReplacementPlugin());
-}
-
 module.exports = {
 	target,
 	devtool,
-	plugins,
 	context: path.resolve(__dirname, '../src'),
 	entry: ['@babel/polyfill', '/index.js'],
 	output: {
 		path: path.resolve(__dirname, '../dist'),
 	},
+	plugins: [
+		new MiniCssExtractPlugin({
+			filename: devMode ? '[name].css' : '[name].[contenthash].css',
+			chunkFilename: devMode ? '[id].css' : '[id].[contenthash].css',
+		}),
+		new HtmlWebpackPlugin({
+			title: 'Aerounion',
+			template: 'template.html',
+			filename: 'index.html',
+		}),
+	],
 	module: {
 		rules: [
 			{
