@@ -45,6 +45,11 @@ module.exports = {
 				type: 'asset/inline',
 			},
 			{
+				test: /\.pug$/,
+				loader: 'pug-loader',
+				exclude: /(node_modules|bower_components)/,
+			},
+			{
 				test: /\.m?js$/i,
 				exclude: /(node_modules|bower_components)/,
 				use: {
