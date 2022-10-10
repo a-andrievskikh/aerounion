@@ -4,7 +4,7 @@ const common = require('./webpack.common');
 module.exports = merge(common, {
 	output: {
 		clean: true,
-		filename: '[name].bundle.js',
+		filename: '[name].js',
 		assetModuleFilename: '[path][name][ext][query]',
 	},
 
