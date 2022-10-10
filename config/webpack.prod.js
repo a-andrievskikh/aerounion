@@ -1,10 +1,10 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlMinimizerWebpackPlugin = require('html-minimizer-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(common, {
 	output: {
@@ -14,7 +14,7 @@ module.exports = merge(common, {
 	},
 
 	plugins: [
-		new CopyWebpackPlugin({
+		new CopyPlugin({
 			patterns: [
 				{
 					from: path.resolve(__dirname, '../src/assets'),
@@ -46,7 +46,7 @@ module.exports = merge(common, {
 
 	optimization: {
 		minimize: true,
-		minimizer: [new HtmlMinimizerWebpackPlugin(), new CssMinimizerPlugin(), new TerserWebpackPlugin(), '...'],
+		minimizer: [new HtmlMinimizerPlugin(), new CssMinimizerPlugin(), new TerserPlugin(), '...'],
 		runtimeChunk: {
 			name: 'runtime',
 		},
