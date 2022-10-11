@@ -4,7 +4,7 @@
 	"description": "Aerounion Project",
 	"author": "Andrew_A",
 	"license": "ISC",
-	"private": true,
+	"main": "main.js",
 	"scripts": {
 		"start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
 		"dev": "cross-env NODE_ENV=development webpack --config config/webpack.dev.js",
