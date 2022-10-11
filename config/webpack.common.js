@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
+const PugPlugin = require('pug-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const devMode = process.env.NODE_ENV === 'development';
@@ -9,32 +10,29 @@ const devtool = devMode ? 'inline-source-map' : false;
 module.exports = {
 	target,
 	devtool,
-	context: path.resolve(__dirname, '../src'),
-	entry: ['@babel/polyfill', '/index.js'],
+	entry: {
+		index: './src/template.pug',
+	},
 	output: {
 		path: path.resolve(__dirname, '../dist'),
+		publicPath: '/',
 	},
 	plugins: [
-		new MiniCssExtractPlugin({
-			filename: devMode ? '[name].css' : '[name].[contenthash].css',
-			chunkFilename: devMode ? '[id].css' : '[id].[contenthash].css',
-		}),
-		new HtmlPlugin({
-			title: 'Aerounion',
-			template: 'template.html',
-			filename: 'index.html',
+		new PugPlugin({
+			pretty: devMode === 'development',
+			extractCss: {
+				filename: devMode ? '[name].css' : '[name].[contenthash:8].css',
+			},
 		}),
 	],
 	module: {
 		rules: [
 			{
-				test: /\.(c|sa|sc)ss$/i,
-				use: [
-					{
-						loader: MiniCssExtractPlugin.loader,
-						options: {},
-					},
-				],
+				test: /\.pug$/i,
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					loader: PugPlugin.loader,
+				},
 			},
 			{
 				test: /\.(?:ico|jpe?g|webp|gif|png)$/i,
@@ -43,11 +41,6 @@ module.exports = {
 			{
 				test: /\.(woff2?|svg)$/i,
 				type: 'asset/inline',
-			},
-			{
-				test: /\.pug$/,
-				loader: 'pug-loader',
-				exclude: /(node_modules|bower_components)/,
 			},
 			{
 				test: /\.m?js$/i,
@@ -80,12 +73,5 @@ module.exports = {
 				},
 			},
 		],
-	},
-	resolve: {
-		modules: [path.resolve(__dirname, '../src'), 'node_modules'],
-		extensions: ['.js', '.jsx', '.json'],
-		alias: {
-			'@': path.resolve(__dirname, '../src'),
-		},
 	},
 };

@@ -9,20 +9,20 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = merge(common, {
 	output: {
 		clean: true,
-		filename: '[name].[contenthash].bundle.js',
+		filename: '[name].[contenthash:8].bundle.js',
 		assetModuleFilename: '[path][hash][query]',
 	},
 
-	plugins: [
-		new CopyPlugin({
-			patterns: [
-				{
-					from: path.resolve(__dirname, '../src/assets'),
-					to: path.resolve(__dirname, '../dist/assets'),
-				},
-			],
-		}),
-	],
+	// plugins: [
+	// 	new CopyPlugin({
+	// 		patterns: [
+	// 			{
+	// 				from: path.resolve(__dirname, '../src/assets'),
+	// 				to: path.resolve(__dirname, '../dist/assets'),
+	// 			},
+	// 		],
+	// 	}),
+	// ],
 
 	module: {
 		rules: [
@@ -32,7 +32,7 @@ module.exports = merge(common, {
 					{
 						loader: 'css-loader',
 						options: {
-							importLoaders: 2,
+							importLoaders: false,
 							sourceMap: false,
 							modules: false,
 						},
@@ -46,7 +46,7 @@ module.exports = merge(common, {
 
 	optimization: {
 		minimize: true,
-		minimizer: [new HtmlMinimizerPlugin(), new CssMinimizerPlugin(), new TerserPlugin(), '...'],
+		minimizer: [new TerserPlugin(), '...'],
 		runtimeChunk: {
 			name: 'runtime',
 		},

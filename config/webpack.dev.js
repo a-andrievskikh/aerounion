@@ -18,10 +18,10 @@ module.exports = merge(common, {
 
 	module: {
 		rules: [
-			{
-				test: /\.html$/i,
-				loader: 'html-loader',
-			},
+			// {
+			// 	test: /\.html$/i,
+			// 	loader: 'html-loader',
+			// },
 			{
 				test: /\.(c|sa|sc)ss$/i,
 				use: [
@@ -29,7 +29,7 @@ module.exports = merge(common, {
 						loader: 'css-loader',
 						options: {
 							sourceMap: true,
-							importLoaders: 1,
+							importLoaders: false,
 							modules: false,
 						},
 					},
