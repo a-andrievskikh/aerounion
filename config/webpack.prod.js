@@ -28,18 +28,7 @@ module.exports = merge(common, {
 		rules: [
 			{
 				test: /\.(c|sa|sc)ss$/i,
-				use: [
-					{
-						loader: 'css-loader',
-						options: {
-							importLoaders: false,
-							sourceMap: false,
-							modules: false,
-						},
-					},
-					'postcss-loader',
-					'sass-loader',
-				],
+				use: ['css-loader', 'postcss-loader', 'sass-loader'],
 			},
 		],
 	},
