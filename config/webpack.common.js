@@ -1,7 +1,5 @@
 const path = require('path');
-const HtmlPlugin = require('html-webpack-plugin');
 const PugPlugin = require('pug-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const devMode = process.env.NODE_ENV === 'development';
 const target = devMode ? 'web' : 'browserslist';
