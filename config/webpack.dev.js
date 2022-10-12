@@ -2,11 +2,6 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
-	output: {
-		clean: true,
-		filename: '[name].js',
-		assetModuleFilename: '[path][name][ext][query]',
-	},
 	module: {
 		rules: [
 			{
