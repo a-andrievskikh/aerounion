@@ -19,7 +19,7 @@ module.exports = {
 	},
 	plugins: [
 		new PugPlugin({
-			pretty: devMode === 'development',
+			pretty: devMode,
 			extractCss: {
 				filename: devMode ? '[name].css' : '[name].[contenthash:8].css',
 			},
