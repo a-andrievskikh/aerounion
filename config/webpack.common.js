@@ -3,7 +3,9 @@ const PugPlugin = require('pug-plugin');
 
 const devMode = process.env.NODE_ENV === 'development';
 const target = devMode ? 'web' : 'browserslist';
-const devtool = devMode ? 'source-map' : false;
+const devtool = devMode ? 'inline-source-map' : false;
+
+console.log(`${process.env.NODE_ENV} mode:`);
 
 module.exports = {
 	target,
@@ -12,7 +14,10 @@ module.exports = {
 		index: './src/template.pug',
 	},
 	output: {
+		clean: true,
 		path: path.resolve(__dirname, '../dist'),
+		filename: devMode ? '[name].js' : '[name].[contenthash:8].bundle.js',
+		assetModuleFilename: '[path][name][ext][query]',
 		publicPath: '/',
 	},
 	devServer: {
@@ -38,6 +43,21 @@ module.exports = {
 				use: {
 					loader: PugPlugin.loader,
 				},
+			},
+			{
+				test: /\.(c|sa|sc)ss$/i,
+				use: [
+					'css-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							postcssOptions: {
+								plugins: [require('postcss-preset-env')],
+							},
+						},
+					},
+					'sass-loader',
+				],
 			},
 			{
 				test: /\.(?:ico|jpe?g|webp|gif|png)$/i,
