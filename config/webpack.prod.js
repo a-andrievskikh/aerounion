@@ -35,7 +35,6 @@ module.exports = merge(common, {
 
 	optimization: {
 		minimize: true,
-		minimizer: [new TerserPlugin(), '...'],
 		runtimeChunk: {
 			name: 'runtime',
 		},
