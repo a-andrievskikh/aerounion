@@ -19,14 +19,7 @@ module.exports = merge(common, {
 	// 	}),
 	// ],
 
-	module: {
-		rules: [
-			{
-				test: /\.(c|sa|sc)ss$/i,
-				use: ['css-loader', 'postcss-loader', 'sass-loader'],
-			},
-		],
-	},
+
 
 	optimization: {
 		minimize: true,
