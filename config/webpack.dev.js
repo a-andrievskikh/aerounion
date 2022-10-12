@@ -12,29 +12,16 @@ module.exports = merge(common, {
 			{
 				test: /\.(c|sa|sc)ss$/i,
 				use: [
-					{
-						loader: 'css-loader',
-						options: {
-							sourceMap: true,
-							importLoaders: false,
-							modules: false,
-						},
-					},
+					'css-loader',
 					{
 						loader: 'postcss-loader',
 						options: {
-							sourceMap: true,
 							postcssOptions: {
 								plugins: [require('postcss-preset-env')],
 							},
 						},
 					},
-					{
-						loader: 'sass-loader',
-						options: {
-							sourceMap: true,
-						},
-					},
+					'sass-loader',
 				],
 			},
 		],
