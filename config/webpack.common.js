@@ -3,7 +3,7 @@ const PugPlugin = require('pug-plugin');
 
 const devMode = process.env.NODE_ENV === 'development';
 const target = devMode ? 'web' : 'browserslist';
-const devtool = devMode ? 'inline-source-map' : false;
+const devtool = devMode ? 'source-map' : false;
 
 module.exports = {
 	target,
@@ -14,6 +14,13 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, '../dist'),
 		publicPath: '/',
+	},
+	devServer: {
+		historyApiFallback: true,
+		open: true,
+		compress: true,
+		hot: true,
+		port: 8080,
 	},
 	plugins: [
 		new PugPlugin({

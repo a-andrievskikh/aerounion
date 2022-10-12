@@ -7,21 +7,8 @@ module.exports = merge(common, {
 		filename: '[name].js',
 		assetModuleFilename: '[path][name][ext][query]',
 	},
-
-	devServer: {
-		historyApiFallback: true,
-		open: true,
-		compress: true,
-		hot: true,
-		port: 8080,
-	},
-
 	module: {
 		rules: [
-			// {
-			// 	test: /\.html$/i,
-			// 	loader: 'html-loader',
-			// },
 			{
 				test: /\.(c|sa|sc)ss$/i,
 				use: [
