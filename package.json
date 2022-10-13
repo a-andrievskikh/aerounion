@@ -6,10 +6,10 @@
 	"license": "ISC",
 	"main": "main.js",
 	"scripts": {
-		"dev": "cross-env NODE_ENV=development webpack --config config/webpack.common.js",
-		"prod": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
-		"dev-serv": "cross-env NODE_ENV=development webpack serve --config config/webpack.common.js",
-		"prod-serv": "cross-env NODE_ENV=production webpack serve --config config/webpack.prod.js",
+		"dev": "cross-env NODE_ENV=development webpack",
+		"prod": "cross-env NODE_ENV=production webpack",
+		"dev-serv": "cross-env NODE_ENV=development webpack serve",
+		"prod-serv": "cross-env NODE_ENV=production webpack serve",
 		"clear": "rd /s /q build dist"
 	},
 	"homepage": "https://github.com/a-andrievskikh/aerounion#readme",
