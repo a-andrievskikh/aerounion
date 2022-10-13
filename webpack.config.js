@@ -86,7 +86,7 @@ module.exports = {
 				test: /\.(?:ico|jpe?g|webp|gif|png)$/i,
 				type: 'asset/resource',
 				generator: {
-					filename: 'assets/img/[name].[hash:8][ext]',
+					filename: 'assets/[path][name].[hash:8][ext]',
 				},
 			},
 			{
