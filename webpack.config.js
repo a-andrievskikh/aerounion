@@ -33,8 +33,9 @@ const performance = () => {
 module.exports = {
 	target,
 	devtool,
+	context: path.resolve(__dirname, 'src'),
 	entry: {
-		index: './src/template.pug',
+		index: 'template.pug',
 	},
 	output: {
 		clean: true,
@@ -84,6 +85,9 @@ module.exports = {
 			{
 				test: /\.(?:ico|jpe?g|webp|gif|png)$/i,
 				type: 'asset/resource',
+				generator: {
+					filename: 'assets/img/[name].[hash:8][ext]',
+				},
 			},
 			{
 				test: /\.(woff2?|svg)$/i,
