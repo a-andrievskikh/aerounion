@@ -7,6 +7,29 @@ const devtool = devMode ? 'inline-source-map' : false;
 
 console.log(`${process.env.NODE_ENV} mode:`);
 
+const optimization = () => {
+	if (!devMode) {
+		const config = {
+			minimize: true,
+			runtimeChunk: {
+				name: 'runtime',
+			},
+		};
+		return config;
+	}
+};
+
+const performance = () => {
+	if (!devMode) {
+		const config = {
+			hints: 'error',
+			maxEntrypointSize: 512000,
+			maxAssetSize: 512000,
+		};
+		return config;
+	}
+};
+
 module.exports = {
 	target,
 	devtool,
@@ -99,4 +122,6 @@ module.exports = {
 			},
 		],
 	},
+	optimization: optimization(),
+	performance: performance(),
 };
