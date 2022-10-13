@@ -19,18 +19,4 @@ module.exports = merge(common, {
 	// 	}),
 	// ],
 
-
-
-	optimization: {
-		minimize: true,
-		runtimeChunk: {
-			name: 'runtime',
-		},
-	},
-
-	performance: {
-		hints: false,
-		maxEntrypointSize: 512000,
-		maxAssetSize: 512000,
-	},
 });
