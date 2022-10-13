@@ -38,7 +38,7 @@ module.exports = {
 	},
 	output: {
 		clean: true,
-		path: path.resolve(__dirname, '../dist'),
+		path: path.resolve(__dirname, 'dist'),
 		filename: devMode ? '[name].js' : '[name].[contenthash:8].bundle.js',
 		assetModuleFilename: '[path][name][ext][query]',
 		publicPath: '/',
