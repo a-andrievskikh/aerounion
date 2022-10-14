@@ -1,16 +1,22 @@
 const path = require('path');
 const PugPlugin = require('pug-plugin');
+const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const devMode = process.env.NODE_ENV === 'development';
 const target = devMode ? 'web' : 'browserslist';
 const devtool = devMode ? 'inline-source-map' : false;
 
+const filename = ext => (devMode ? `[name].${ext}` : `[name].[contenthash:8].${ext}`);
+const chunkFilename = ext => (devMode ? `[id].${ext}` : `[id].[contenthash:8].${ext}`);
+const assetModuleFilename = () => (devMode ? '[path][name][ext]' : 'assets/[hash:8][ext][query]');
 console.log(`${process.env.NODE_ENV} mode:`);
 
 const optimization = () => {
 	if (!devMode) {
 		const config = {
 			minimize: true,
+			minimizer: [new HtmlMinimizerPlugin(), new CssMinimizerPlugin(), '...'],
 			runtimeChunk: {
 				name: 'runtime',
 			},
@@ -22,9 +28,9 @@ const optimization = () => {
 const performance = () => {
 	if (!devMode) {
 		const config = {
-			hints: 'error',
-			maxEntrypointSize: 512000,
-			maxAssetSize: 512000,
+			hints: devMode ? 'warning' : 'error',
+			maxEntrypointSize: (devMode ? 15000 : 3000) * 1024,
+			maxAssetSize: (devMode ? 4000 : 3000) * 1024,
 		};
 		return config;
 	}
@@ -38,10 +44,12 @@ module.exports = {
 		index: 'template.pug',
 	},
 	output: {
-		clean: true,
 		path: path.resolve(__dirname, 'dist'),
-		filename: devMode ? '[name].js' : '[name].[contenthash:8].bundle.js',
-		publicPath: '/',
+		filename: filename('js'),
+		chunkFilename: chunkFilename('js'),
+		assetModuleFilename: assetModuleFilename(),
+		publicPath: 'auto',
+		clean: true,
 	},
 	devServer: {
 		historyApiFallback: true,
@@ -50,11 +58,15 @@ module.exports = {
 		hot: true,
 		port: 8080,
 	},
+	watchOptions: {
+		ignored: /node_modules/,
+	},
 	plugins: [
 		new PugPlugin({
+			// verbose: devMode,
 			pretty: devMode,
 			extractCss: {
-				filename: devMode ? '[name].css' : '[name].[contenthash:8].css',
+				filename: filename('css'),
 			},
 		}),
 	],
@@ -70,7 +82,12 @@ module.exports = {
 			{
 				test: /\.(c|sa|sc)ss$/i,
 				use: [
-					'css-loader',
+					{
+						loader: 'css-loader',
+						options: {
+							import: false,
+						},
+					},
 					{
 						loader: 'postcss-loader',
 						options: {
@@ -85,12 +102,9 @@ module.exports = {
 			{
 				test: /\.(?:ico|jpe?g|webp|gif|png)$/i,
 				type: 'asset/resource',
-				generator: {
-					filename: 'assets/[path][name].[hash:8][ext]',
-				},
 			},
 			{
-				test: /\.(woff2?|svg)$/i,
+				test: /\.(woff|woff?2|eot|ttf|otf|svg)$/i,
 				type: 'asset/inline',
 			},
 			{
@@ -127,4 +141,9 @@ module.exports = {
 	},
 	optimization: optimization(),
 	performance: performance(),
+	stats: {
+		// colors: true,
+		preset: devMode ? 'minimal' : 'errors-warnings',
+		// loggingDebug: devMode ? ['sass-loader'] : [],
+	},
 };
