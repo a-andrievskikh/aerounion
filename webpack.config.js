@@ -44,7 +44,7 @@ module.exports = {
 	devtool,
 	context: path.resolve(__dirname, 'src'),
 	entry: {
-		index: 'template.pug',
+		index: 'index.pug',
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
