@@ -24,6 +24,20 @@ const optimization = () => {
 	}
 };
 
+const performance = () => {
+	return {
+		hints: devMode ? 'warning' : 'error',
+		maxEntrypointSize: (devMode ? 15000 : 3000) * 1024,
+		maxAssetSize: (devMode ? 4000 : 3000) * 1024,
+	};
+};
+
+const stats = () => {
+	return {
+		preset: devMode ? 'minimal' : 'errors-warnings',
+	};
+};
+
 module.exports = {
 	target,
 	devtool,
@@ -128,14 +142,6 @@ module.exports = {
 		],
 	},
 	optimization: optimization(),
-	performance: {
-		hints: devMode ? 'warning' : 'error',
-		maxEntrypointSize: (devMode ? 15000 : 3000) * 1024,
-		maxAssetSize: (devMode ? 4000 : 3000) * 1024,
-	},
-	stats: {
-		// colors: true,
-		preset: devMode ? 'minimal' : 'errors-warnings',
-		// loggingDebug: devMode ? ['sass-loader'] : [],
-	},
+	performance: performance(),
+	stats: stats(),
 };
