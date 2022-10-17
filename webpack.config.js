@@ -10,7 +10,6 @@ const devtool = devMode ? 'inline-source-map' : false;
 const filename = ext => (devMode ? `[name].${ext}` : `[name].[contenthash:8].${ext}`);
 const chunkFilename = ext => (devMode ? `[id].${ext}` : `[id].[contenthash:8].${ext}`);
 const assetModuleFilename = () => (devMode ? '[path][name][ext]' : 'assets/[hash:8][ext][query]');
-console.log(`${process.env.NODE_ENV} mode:`);
 
 const optimization = () => {
 	if (!devMode) {
@@ -37,6 +36,8 @@ const stats = () => {
 		preset: devMode ? 'minimal' : 'errors-warnings',
 	};
 };
+
+console.log(`${process.env.NODE_ENV} mode:`);
 
 module.exports = {
 	target,
