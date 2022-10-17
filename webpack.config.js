@@ -25,17 +25,6 @@ const optimization = () => {
 	}
 };
 
-const performance = () => {
-	if (!devMode) {
-		const config = {
-			hints: devMode ? 'warning' : 'error',
-			maxEntrypointSize: (devMode ? 15000 : 3000) * 1024,
-			maxAssetSize: (devMode ? 4000 : 3000) * 1024,
-		};
-		return config;
-	}
-};
-
 module.exports = {
 	target,
 	devtool,
@@ -140,7 +129,11 @@ module.exports = {
 		],
 	},
 	optimization: optimization(),
-	performance: performance(),
+	performance: {
+		hints: devMode ? 'warning' : 'error',
+		maxEntrypointSize: (devMode ? 15000 : 3000) * 1024,
+		maxAssetSize: (devMode ? 4000 : 3000) * 1024,
+	},
 	stats: {
 		// colors: true,
 		preset: devMode ? 'minimal' : 'errors-warnings',
