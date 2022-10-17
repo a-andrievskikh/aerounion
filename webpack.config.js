@@ -14,14 +14,13 @@ console.log(`${process.env.NODE_ENV} mode:`);
 
 const optimization = () => {
 	if (!devMode) {
-		const config = {
+		return {
 			minimize: true,
 			minimizer: [new HtmlMinimizerPlugin(), new CssMinimizerPlugin(), '...'],
 			runtimeChunk: {
 				name: 'runtime',
 			},
 		};
-		return config;
 	}
 };
 
