@@ -144,5 +144,5 @@ module.exports = {
 	},
 	optimization: optimization(),
 	performance: performance(),
-	stats: stats(),
+	// stats: stats(),
 };
