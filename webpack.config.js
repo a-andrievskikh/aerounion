@@ -61,6 +61,7 @@ module.exports = {
 		hot: true,
 		port: 8080,
 	},
+	watch: true,
 	watchOptions: {
 		ignored: /node_modules/,
 	},
