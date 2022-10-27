@@ -10,7 +10,7 @@
 		"prod": "cross-env NODE_ENV=production webpack",
 		"dev-serv": "cross-env NODE_ENV=development webpack serve",
 		"prod-serv": "cross-env NODE_ENV=production webpack serve",
-		"clear": "rd /s /q build dist"
+		"clear": "rd /s /q dist"
 	},
 	"homepage": "https://github.com/a-andrievskikh/aerounion#readme",
 	"devDependencies": {
