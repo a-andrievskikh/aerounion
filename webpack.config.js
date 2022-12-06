@@ -37,11 +37,22 @@ const stats = () => {
 	};
 };
 
+const plugins = [
+	new PugPlugin({
+		// verbose: devMode,
+		pretty: devMode,
+		extractCss: {
+			filename: filename('css'),
+		},
+	}),
+];
+
 console.log(`${process.env.NODE_ENV} mode:`);
 
 module.exports = {
 	target,
 	devtool,
+	plugins,
 	context: path.resolve(__dirname, 'src'),
 	entry: {
 		index: 'index.pug',
@@ -51,29 +62,28 @@ module.exports = {
 		filename: filename('js'),
 		chunkFilename: chunkFilename('js'),
 		assetModuleFilename: assetModuleFilename(),
-		publicPath: 'auto',
+		publicPath: '/',
 		clean: true,
 	},
 	devServer: {
+		static: {
+			directory: path.join(__dirname, 'dist'),
+		},
+		watchFiles: {
+			paths: ['src/**/*.*', 'assets/scss/**/*.*'],
+			options: {
+				usePolling: true,
+			},
+		},
 		historyApiFallback: true,
 		open: true,
 		compress: true,
 		hot: true,
 		port: 8080,
 	},
-	watch: true,
 	watchOptions: {
 		ignored: /node_modules/,
 	},
-	plugins: [
-		new PugPlugin({
-			// verbose: devMode,
-			pretty: devMode,
-			extractCss: {
-				filename: filename('css'),
-			},
-		}),
-	],
 	module: {
 		rules: [
 			{
@@ -106,10 +116,16 @@ module.exports = {
 			{
 				test: /\.(?:ico|jpe?g|webp|gif|png)$/i,
 				type: 'asset/resource',
+				generator: {
+					filename: 'assets/images/[name].[hash:8][ext]',
+				},
 			},
 			{
 				test: /\.(woff|woff?2|eot|ttf|otf|svg)$/i,
 				type: 'asset/inline',
+				generator: {
+					filename: 'assets/fonts/[name][ext][query]',
+				},
 			},
 			{
 				test: /\.m?js$/i,
